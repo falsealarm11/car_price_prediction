@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Car Price</title>
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+    body {
+        background-color: #8753b4;
+        background-image: url("joey.jpg");
+        background-size: cover;
+        font-family: Arial, sans-serif;
+    }
+    .index {
+        margin: 50px auto;
+        max-width: 700px;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.7);
+        border-radius: 30px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    }
+    h1 {
+        text-align: center;
+        font-size: 3rem;
+        margin-bottom: 50px;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    label {
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+    }
+    input[type="text"], select {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 10px;
+    width: 100%;
+    font-size: 1.2rem;
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0.1);
+    outline: none;
+    transition: all 0.3s ease-in-out;
+    }
+
+    input[type="text"]:focus, select:focus {
+    box-shadow: 0px 0px 5px #007bff;
+    background-color: rgba(0, 0, 0, 0.05);
+    }
+    select {
+        cursor: pointer;
+    }
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        font-size: 1.2rem;
+        padding: 10px;
+        width: 50%;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+    h3 {
+        font-size: 2rem;
+        margin-top: 50px;
+        text-align: center;
+    }
+    </style>
+
+</head>
+<body>
+
+<div class="index">
+    <center>
+	    <h1>Selling Price of Car </h1><br>
+    </center>
+
+     <!-- Main Input For Receiving Query to our ML -->
+<h6>
+    <form action="{{ url_for('predict')}}"method="post">
+        <label for="Year" >Year:</label><br>
+        <input type="text" id="Year" name="Year" placeholder="Year" required="required"/><br><br>
+        <label for="KM driven" >KM driven:</label><br>
+        <input type="text" id="KM driven" name="KM driven" placeholder="KM driven" required="required"/><br><br>
+        <label for="Fuel">Fuel:</label><br>
+        <select id="Fuel" name="Fuel">
+            <option value="Diesel">Diesel</option>
+            <option value="Petrol">Petrol</option>
+            <option value="LPG">LPG</option>
+            <option value="CNG">CNG</option></select><br><br>
+        <label for="Seller Type">Seller Type:</label><br>
+        <select id="Seller Type" name="Seller Type">
+            <option value="Individual">Individual</option>
+            <option value="Dealer">Dealer</option>
+            <option value="Trustmark Dealer">Trustmark Dealer</option></select><br><br>
+        <label for="Transmission">Transmission:</label><br>
+        <select id="Transmission" name="Transmission">
+            <option value="Manual">Manual</option>
+            <option value="Automatic">Automatic</option></select><br><br>
+        <label for="Owner">Owner:</label><br>
+        <select id="Owner" name="Owner">
+            <option value="First Owner">First Owner</option>
+            <option value="Second Owner">Second Owner</option>
+            <option value="Third Owner">Third Owner</option>
+            <option value="Fourth & Above Owner">Fourth & Above Owner</option>
+            <option value="Test Drive Car">Test Drive Car</option></select><br><br>
+        <label for="Mileage">Mileage:</label><br>
+        <input type="text" id="Mileage" name="Mileage" placeholder="Mileage" required="required"/><br><br>
+        <label for="Engine">Engine:</label><br>
+        <input type="text" id="Engine" name="Engine" placeholder="Engine" required="required"/><br><br>
+        <label for="Max Power">Max Power:</label><br>
+        <input type="text" id="Max Power" name="Max Power" placeholder="Max Power" required="required"/><br><br>
+        <label for="Seats">Seats:</label><br>
+        <input type="text" id="Seats" name="Seats" placeholder="Mileage" required="required"/><br><br>
+
+        <button type="submit" class="btn btn-primary btn-block ">Predict</button>
+    </form>
+    <br>
+</h6>
+    <h3>
+            {{ prediction_text }}
+    </h3>
+
+</div>
+
+</body>
+</html>
